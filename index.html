@@ -92,7 +92,7 @@
 
         /* Animación de carga (Círculo azul girando) */
         .captcha-spinner {
-            display: none; /* Oculto por defecto */
+            display: none;
             width: 24px;
             height: 24px;
             border: 3px solid #f3f3f3;
@@ -124,7 +124,7 @@
             margin-top: 2px;
         }
 
-        /* Contenedor Validado (Paso 2) - Color Verde Ajustado */
+        /* Contenedor Validado (Paso 2) */
         #paso2 {
             display: none;
             background-color: #dcedc8;
@@ -246,7 +246,6 @@
         <div class="captcha-box" onclick="validarCaptcha()">
             <div class="captcha-left">
                 <div class="captcha-checkbox" id="checkbox-captcha"></div>
-                <!-- El spinner de carga está oculto por defecto -->
                 <div class="captcha-spinner" id="spinner-captcha"></div>
                 <span class="captcha-label">No soy un robot</span>
             </div>
@@ -271,23 +270,21 @@
         <div class="pdf-viewer">
             <div class="pdf-icon">PDF</div>
             <div class="pdf-text">getPdf</div>
-            <!-- Se agregó la función onclick para abrir el PDF -->
+            <!-- Botón que llama a la nueva función -->
             <button class="btn-abrir" onclick="abrirPDF()">Abrir</button>
         </div>
         
         <div class="copy-section clearfix">
             Si no puede ver el Certificado mas arriba, pinche aqui para abrir en una nueva ventana:
-            <!-- Se agregó la función onclick para abrir el PDF también en este botón -->
+            <!-- Botón que llama a la nueva función -->
             <button class="btn-copia" onclick="abrirPDF()">📄 Ver Copia</button>
         </div>
     </div>
 
-    <!-- BOTÓN VOLVER -->
     <div id="btn-volver-container" style="display: none;" class="clearfix">
         <button class="btn-volver">🏠 Volver al Portal</button>
     </div>
 
-    <!-- PIE DE PÁGINA -->
     <div class="footer">
         <strong>Ministerio de Educación</strong><br>
         <a href="#">Gobierno de Chile</a><br>
@@ -299,13 +296,9 @@
 
 <script>
     function validarCaptcha() {
-        // 1. Ocultar el cuadro vacío
         document.getElementById('checkbox-captcha').style.display = 'none';
-        
-        // 2. Mostrar el círculo girando de carga
         document.getElementById('spinner-captcha').style.display = 'block';
         
-        // 3. Esperar 1.2 segundos simulando la conexión y luego avanzar
         setTimeout(function() {
             document.getElementById('paso1').style.display = 'none';
             document.getElementById('paso2').style.display = 'block';
@@ -313,12 +306,11 @@
         }, 1200);
     }
 
-    // Función para abrir el PDF en una nueva pestaña
+    // Función modificada: Abre el visor HTML en lugar del PDF directo
     function abrirPDF() {
-        window.open('MaicolM.pdf', '_blank');
+        window.open('visor_certificado.html', '_blank');
     }
 </script>
 
 </body>
 </html>
-
