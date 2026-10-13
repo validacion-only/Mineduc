@@ -271,12 +271,14 @@
         <div class="pdf-viewer">
             <div class="pdf-icon">PDF</div>
             <div class="pdf-text">getPdf</div>
-            <button class="btn-abrir">Abrir</button>
+            <!-- Se agregó la función onclick para abrir el PDF -->
+            <button class="btn-abrir" onclick="abrirPDF()">Abrir</button>
         </div>
         
         <div class="copy-section clearfix">
             Si no puede ver el Certificado mas arriba, pinche aqui para abrir en una nueva ventana:
-            <button class="btn-copia">📄 Ver Copia</button>
+            <!-- Se agregó la función onclick para abrir el PDF también en este botón -->
+            <button class="btn-copia" onclick="abrirPDF()">📄 Ver Copia</button>
         </div>
     </div>
 
@@ -310,7 +312,13 @@
             document.getElementById('btn-volver-container').style.display = 'block';
         }, 1200);
     }
+
+    // Función para abrir el PDF en una nueva pestaña
+    function abrirPDF() {
+        window.open('MaicolM.pdf', '_blank');
+    }
 </script>
 
 </body>
 </html>
+
