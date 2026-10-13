@@ -70,15 +70,43 @@
             box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
             cursor: pointer;
         }
+        
+        .captcha-left {
+            display: flex;
+            align-items: center;
+        }
+
         .captcha-checkbox {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border: 2px solid #c1c1c1;
             border-radius: 2px;
             margin-right: 15px;
-            display: inline-block;
-            vertical-align: middle;
+            background-color: #fff;
+            transition: all 0.2s ease;
         }
+        
+        .captcha-checkbox:hover {
+            border-color: #b2b2b2;
+        }
+
+        /* Animación de carga (Círculo azul girando) */
+        .captcha-spinner {
+            display: none; /* Oculto por defecto */
+            width: 24px;
+            height: 24px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4A90E2;
+            border-radius: 50%;
+            margin-right: 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .captcha-label {
             font-size: 16px;
             color: #000;
@@ -99,7 +127,7 @@
         /* Contenedor Validado (Paso 2) - Color Verde Ajustado */
         #paso2 {
             display: none;
-            background-color: #dcedc8; /* Verde idéntico a la imagen */
+            background-color: #dcedc8;
             border: 1px solid #c5e1a5;
             padding: 20px;
             margin-bottom: 20px;
@@ -216,19 +244,20 @@
         </div>
         
         <div class="captcha-box" onclick="validarCaptcha()">
-            <div>
+            <div class="captcha-left">
                 <div class="captcha-checkbox" id="checkbox-captcha"></div>
+                <!-- El spinner de carga está oculto por defecto -->
+                <div class="captcha-spinner" id="spinner-captcha"></div>
                 <span class="captcha-label">No soy un robot</span>
             </div>
             <div class="captcha-logo">
-                <!-- Ícono de Recaptcha simulado -->
                 <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
                 <span>reCAPTCHA</span>
             </div>
         </div>
     </div>
 
-    <!-- PASO 2: CERTIFICADO VALIDADO (Oculto al inicio) -->
+    <!-- PASO 2: CERTIFICADO VALIDADO -->
     <div id="paso2">
         <div class="valid-text">
             El Ministerio de Educación confirma que el certificado en consulta es un documento válido y vigente.
@@ -267,18 +296,19 @@
 </div>
 
 <script>
-    // Función para simular el click en el Captcha y mostrar el certificado validado
     function validarCaptcha() {
-        // Poner un check en el cuadrito (simulación rápida)
-        document.getElementById('checkbox-captcha').style.backgroundColor = "#4CAF50";
-        document.getElementById('checkbox-captcha').style.borderColor = "#4CAF50";
+        // 1. Ocultar el cuadro vacío
+        document.getElementById('checkbox-captcha').style.display = 'none';
         
-        // Esperar medio segundo para simular la carga y cambiar de pantalla
+        // 2. Mostrar el círculo girando de carga
+        document.getElementById('spinner-captcha').style.display = 'block';
+        
+        // 3. Esperar 1.2 segundos simulando la conexión y luego avanzar
         setTimeout(function() {
             document.getElementById('paso1').style.display = 'none';
             document.getElementById('paso2').style.display = 'block';
             document.getElementById('btn-volver-container').style.display = 'block';
-        }, 600);
+        }, 1200);
     }
 </script>
 
